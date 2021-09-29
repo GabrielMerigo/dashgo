@@ -1,5 +1,7 @@
+import Header from "../components/Header";
+
 export default function Dashboard(){
   return (
-    <h1>Olá!!</h1>
+    <Header />
   )
 }
