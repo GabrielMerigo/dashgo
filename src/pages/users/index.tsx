@@ -14,6 +14,7 @@ import {
   Text,
   useBreakpointValue
 } from "@chakra-ui/react";
+
 import Link from 'next/link';
 import { RiAddLine } from "react-icons/ri";
 import { useEffect } from "react";
@@ -32,8 +33,7 @@ export default function UserList() {
     fetch('http://localhost:3000/api/users')
       .then(response => response.json())
       .then(data => console.log(data))
-  }, [])
-
+  }, []);
 
   return (
     <Box>
