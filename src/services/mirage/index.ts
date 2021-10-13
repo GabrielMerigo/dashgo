@@ -1,4 +1,4 @@
-import { createServer, Model } from 'miragejs';
+import { createServer, Factory, Model } from 'miragejs';
 
 type User = {
   name: string,
@@ -12,6 +12,24 @@ export function makeServer(){
       user: Model.extend<Partial<User>>({})
     },
 
+    factories: {
+      user: Factory.extend({
+        name() {
+          
+        },
+        email() {
+          
+        },
+        createdAt() {
+          
+        },
+      })
+    },
+
+    seeds(server){
+
+    },
+
     routes(){
       this.namespace = 'api';
       this.timing = 750;
@@ -21,6 +39,7 @@ export function makeServer(){
       this.post('/users');
 
       this.namespace = '';
+      this.passthrough()
     }
   })
 
