@@ -16,7 +16,7 @@ export function makeServer(){
     factories: {
       user: Factory.extend({
         name(i: Number) {
-          return `User ${i}`
+          return `User ${Number(i) + 1}`
         },
         email() {
           return faker.internet.email().toLowerCase()
