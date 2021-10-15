@@ -25,7 +25,7 @@ import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
   const { data, isLoading, isFetching, error } = useUsers();
-
+  
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true

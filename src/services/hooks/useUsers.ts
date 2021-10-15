@@ -1,18 +1,17 @@
 import { useQuery } from "react-query";
 import { api } from "../api";
 
-type Users = {
+type User = {
   createdAt: string;
   email: string;
   id: string;
   name: string;
 }
 
-async function getUsers() {
+export async function getUsers(): Promise<User[]> {
   const { data } = await api.get('users');
-  const usersArray: Array<Users> = data.users;
-                                                                                                     
-  const users = usersArray.map(user => {
+
+  const users = data.users.map(user => {
     return {
       id: user.id,
       name: user.name,
