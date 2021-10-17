@@ -28,7 +28,7 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export function useUsers(){
-  return useQuery<User[]>('users', getUsers, {
+  return useQuery('users', getUsers, {
     staleTime: 1000 * 5 // 5 seconds
   });
 }
