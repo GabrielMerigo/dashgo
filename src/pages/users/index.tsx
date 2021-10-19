@@ -24,6 +24,8 @@ import Header from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import Sidebar from "../../components/Sidebar";
 import { useUsers } from "../../services/hooks/useUsers";
+import { queryClient } from "../../services/queryClient";
+import { api } from "../../services/api";
 
 export default function UserList() {
   const [page, setPage] = useState(1);
@@ -35,6 +37,16 @@ export default function UserList() {
     base: false,
     lg: true
   })
+
+  async function handlePrefetchUser(userId: number){
+    await queryClient.prefetchQuery(['user', userId], async () => {
+      const response = await api.get(`users/${userId}`);
+
+      return response.data;
+    }, {
+      staleTime: 1000 * 60 * 10
+    })
+  }
 
   return (
     <Box>
@@ -92,7 +104,7 @@ export default function UserList() {
                         </Td>
                         <Td>
                           <Box>
-                            <Link color="purple.400">
+                            <Link color="purple.400" onMouseEnter={() => handlePrefetchUser(Number(user.id))}>
                               <Text fontWeight="bold">{user.name}</Text>
                             </Link>
                             <Text fontSize="sm" color="gray.300">{user.email}</Text>
